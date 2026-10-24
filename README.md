@@ -4,14 +4,14 @@
 실제 위성사진의 토지피복 지도를 규칙에 따라 고쳐서(건물 생성·삭제, 물 확장·축소),
 생성 모델이 그 부분만 다시 그리게 만들고, **조작 위치 정답**을 함께 저장합니다.
 
-모델은 팀원 저장소 [loveda-semantic-editing](https://github.com/ruet66/loveda-semantic-editing)의
+모델은 재환님 저장소 [loveda-semantic-editing](https://github.com/ruet66/loveda-semantic-editing)의
 GAN을 **수정하지 않고 그대로** 불러다 씁니다. 이 저장소는 데이터를 준비하고, 그 모델을
 이 데이터로 학습·평가하는 부분만 담당합니다.
 
 ```
 [이 저장소]  원본 → 256 패치(팀 기준 분할) → 학습 데이터 / 평가용 조작 세트
                                    │                    │
-[팀원 저장소] model.py (생성기·판별기·손실) ◀── train_full.py   run_teammate_gan.py ──▶ 결과·지표
+[재환님 저장소] model.py (생성기·판별기·손실) ◀── train_full.py   run_teammate_gan.py ──▶ 결과·지표
 ```
 
 ---
@@ -42,7 +42,7 @@ grep "=====" logs/pipeline.log                                        # 진행 �
 
 ---
 
-## 3. 데이터 분할 (팀원 저장소 목록을 그대로 따름)
+## 3. 데이터 분할 (재환님 저장소 목록을 그대로 따름)
 
 | split | 원본 | 용도 |
 |---|---|---|
@@ -102,8 +102,8 @@ grep "=====" logs/pipeline.log                                        # 진행 �
 | `run_teammate_gan.py` | 체크포인트 + 패치 + 조작 세트 | `results/{이름}/images`, `sheets`, `results.csv`, `summary.json` |
 | `loveda_lib.py` | (공용) | 조작 규칙, 학습 구멍, Dataset, 입력 생성 |
 
-### train_full.py와 팀원 train.py의 차이
-모델 구조·손실·옵티마이저·AMP 설정은 팀원 코드를 그대로 import 합니다. 다른 점은 데이터뿐입니다.
+### train_full.py와 재환님 train.py의 차이
+모델 구조·손실·옵티마이저·AMP 설정은 재환님 코드를 그대로 import 합니다. 다른 점은 데이터뿐입니다.
 - 미리 자른 패치를 DataLoader 여러 프로세스로 읽음 (팀원 코드는 1024 원본을 매번 열어 자름)
 - 학습 구멍이 위 3종류 (팀원 코드는 클래스 주변 사각형 + 패치 전체)
 - `--init none`으로 처음부터 학습 가능
@@ -113,7 +113,7 @@ grep "=====" logs/pipeline.log                                        # 진행 �
 
 ## 8. 평가 지표 (`run_teammate_gan.py`)
 
-채점은 팀원의 별도 분할 모델(`semantic_audit.pt`, 학습 손실용 teacher와 다른 가중치)로 합니다.
+채점은 재환님의 별도 분할 모델(`semantic_audit.pt`, 학습 손실용 teacher와 다른 가중치)로 합니다.
 
 | 지표 | 의미 | 방향 |
 |---|---|---|
