@@ -1,0 +1,6 @@
+# torch, torchvision은 서버 GPU/CUDA에 맞는 버전을 먼저 설치 (https://pytorch.org/get-started/locally/)
+numpy
+scipy
+pillow
+matplotlib
+tqdm

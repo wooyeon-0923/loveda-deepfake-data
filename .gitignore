@@ -1,0 +1,14 @@
+# 데이터·결과는 올리지 않음 (스크립트로 다시 만들 수 있음)
+data/
+runs/
+results/
+logs/
+outputs/*.png
+*.zip
+*.pt
+*.pth
+wget-log*
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.DS_Store
