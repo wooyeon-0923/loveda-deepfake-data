@@ -19,7 +19,7 @@ GAN을 **수정하지 않고 그대로** 불러다 씁니다. 이 저장소는 �
 ## 1. 준비
 
 ```bash
-git clone https://github.com/<내아이디>/loveda-deepfake-data.git
+git clone https://github.com/wooyeon-0923/loveda-deepfake-data.git
 git clone https://github.com/ruet66/loveda-semantic-editing.git     # 같은 상위 폴더에 나란히
 pip install -r loveda-deepfake-data/requirements.txt                # torch/torchvision은 GPU에 맞게 먼저 설치
 
